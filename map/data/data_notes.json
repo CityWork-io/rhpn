@@ -1,0 +1,70 @@
+{
+ "built": "2026-07-08",
+ "source": "RHPN Phase 2 locked v5 artifacts (FINAL_Phase_2_Report.md figures)",
+ "population": {
+  "heirs": 8091,
+  "high_confidence": 1225,
+  "likely": 6866,
+  "all_parcels": 381852,
+  "headline_rate_pct": 2.12
+ },
+ "suppression_rule": "Tracts with fewer than 5 heirs-flagged parcels or fewer than 100 total parcels are not assigned a rate class.",
+ "suppressed_tracts": 12,
+ "hp_bins": {
+  "edges_pct": [
+   1.25,
+   1.75,
+   2.25,
+   3.25
+  ],
+  "labels": [
+   "Under 1.25%",
+   "1.25% \u2013 1.75%",
+   "1.75% \u2013 2.25%",
+   "2.25% \u2013 3.25%",
+   "Over 3.25%"
+  ],
+  "method": "Quintiles of the 246 unsuppressed tracts, edges rounded to clean values",
+  "tract_counts": {
+   "1": 49,
+   "2": 45,
+   "3": 49,
+   "4": 53,
+   "5": 50
+  }
+ },
+ "race_bins": {
+  "edges_pct": [
+   20,
+   40,
+   60,
+   80
+  ],
+  "labels": [
+   "Under 20%",
+   "20% \u2013 40%",
+   "40% \u2013 60%",
+   "60% \u2013 80%",
+   "Over 80%"
+  ],
+  "source": "ACS 5-year, % non-Hispanic Black, tract level"
+ },
+ "poverty_bins": {
+  "edges_pct": [
+   10,
+   20,
+   30,
+   40
+  ],
+  "labels": [
+   "Under 10%",
+   "10% \u2013 20%",
+   "20% \u2013 30%",
+   "30% \u2013 40%",
+   "Over 40%"
+  ],
+  "source": "ACS 5-year poverty rate, tract level"
+ },
+ "zone_labels_status": "Geographic descriptions; formal naming open with RHPN",
+ "frames": "258 tracts mapped; 256 carry zones; 2 zero-population tracts show no ACS bins"
+}
