@@ -17,15 +17,8 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
 .title-block h1{font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:24px;font-weight:700;letter-spacing:-.5px;line-height:1.15}
 .title-block h1 span{background:rgba(255,255,255,.85);padding:2px 8px;border-radius:4px;box-shadow:0 2px 14px rgba(0,0,0,.14)}
 .title-block .subtitle{font-size:13.5px;font-weight:400;color:#46413a;margin-top:6px;letter-spacing:.2px;background:rgba(255,255,255,.78);padding:3px 8px;border-radius:4px;display:inline-block}
-.editorial{background:rgba(255,255,255,.9);border:1px solid rgba(35,31,25,.14);border-radius:8px;overflow:hidden}
-.editorial-head{display:flex;align-items:center;justify-content:space-between;padding:10px 12px;cursor:pointer;user-select:none}
-.editorial-head .t{font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.2px}
-.editorial-head .chev{font-size:13px;color:#1f1d19;transition:transform .2s}
-.editorial.collapsed .chev{transform:rotate(-90deg)}
-.editorial-body{padding:0 12px 12px;font-size:12px;line-height:1.5;color:#46413a;max-height:240px;overflow-y:auto}
-.editorial.collapsed .editorial-body{display:none}
-.editorial-body p{margin-bottom:9px}
-.editorial-body strong{color:#1f1d19;font-weight:600}
+.editorial-link{display:block;font-family:'Nunito Sans',sans-serif;font-size:12px;color:#46413a;text-decoration:none;padding:2px 0}
+.editorial-link:hover{color:#1f1d19;text-decoration:underline}
 
 .panel{position:absolute;top:24px;right:24px;z-index:10;width:272px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border:1px solid rgba(35,31,25,.1);border-radius:12px;padding:18px;box-shadow:0 12px 34px rgba(52,45,35,.18);max-height:calc(100vh - 48px);overflow-y:auto}
 .panel-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.3px;color:#1f1d19}
@@ -92,7 +85,6 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
 .panel{width:216px;padding:13px;top:12px;right:12px}
 .title-block{top:12px;left:12px;max-width:56vw}
 .title-block h1{font-size:17px}
-.editorial-body{max-height:190px}
 .legend-bar{padding:10px 14px;bottom:20px}
 }
 @media (max-width:640px){
@@ -153,22 +145,7 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
   </div>
 
   <div class="divider"></div>
-  <div class="editorial collapsed" id="editorial">
-    <div class="editorial-head" id="editorialHead">
-      <span class="t">About this map &amp; data notes</span>
-      <span class="chev">▾</span>
-    </div>
-    <div class="editorial-body">
-      <p><strong>What this shows.</strong> Across the six-jurisdiction study area, <strong>8,091 of 381,852 parcels, about 1 in 47,</strong> carry an elevated heirs’ property classification, built from assessor and mail-delivery records (deceased owners still on title, long tenure, absentee ownership, vacancy, and related signals). Each census tract is shaded by the share of its parcels carrying that classification.</p>
-      <p><strong>Rates appear only as ranges.</strong> Exact tract-level figures are not published. Class breaks (1.25% / 1.75% / 2.25% / 3.25%) are quintiles of the classified tracts, rounded to clean values.</p>
-      <p><strong>Small tracts are protected.</strong> Tracts with fewer than 5 flagged parcels, or fewer than 100 parcels in total, are hatched and carry no rate class. That is 12 of 258 tracts, holding under 0.3% of the flagged population.</p>
-      <p><strong>Hot &amp; cold cores.</strong> Tracts that all six spatial-statistic combinations (each corrected for multiple testing) independently flag as significantly above or below their surroundings. There are 16 hot cores and 26 cold cores.</p>
-      <p><strong>Zones</strong> are 11 contiguous groupings of tracts with similar heirs’ property profiles (SKATER regionalization). Zone descriptions are provisional.</p>
-      <p><strong>Demographic layers</strong> show American Community Survey 5-year tract estimates, also in ranges. Two special-use tracts have no resident population and show no demographic class.</p>
-      <p><strong>A floor, not a ceiling.</strong> Assessor records lag true ownership. Deeds can remain in a deceased owner’s name without appearing in any signal, so the flagged population understates the true extent of heirs’ property.</p>
-      <p>Analysis from the RHPN Phase 2 exploratory &amp; spatial data analysis (2026). Parcel data from ReGrid assessor extracts, Q1 2026 (vintages vary by jurisdiction). Demographics from ACS 5-year estimates.</p>
-    </div>
-  </div>
+  <a class="editorial-link" href="../methods.html" target="_top">Methods &amp; data notes →</a>
   </div>
 </div>
 
@@ -560,8 +537,6 @@ function buildRegionButtons() {
   });
 }
 
-$("editorialHead").addEventListener("click", () =>
-  $("editorial").classList.toggle("collapsed"));
 
 $("panelToggle").addEventListener("click", () =>
   $("panel").classList.toggle("collapsed"));
