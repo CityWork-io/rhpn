@@ -1,3 +1,5 @@
+/* This is a draft currently under review */
+
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 <meta name="robots" content="noindex, nofollow">
@@ -617,19 +619,13 @@ ul.task-list li input[type="checkbox"] {
   document.documentElement.classList.add("scrolly-js");
   document.querySelectorAll(".scrolly").forEach(function (section) {
     var steps = Array.prototype.slice.call(section.querySelectorAll(".step"));
-    // Resolve the active step deterministically on every observer change:
-    // pick the step whose center is nearest the viewport center instead of
-    // reacting to isIntersecting-true events. The old code let whichever
-    // true-entry was processed last in a batch win, but batches aren't in
-    // DOM order — so scrolling back up could leave the centered paragraph
-    // without .active (stuck faded). Closest-to-center is direction-agnostic.
+    // Active step = the step whose center is closest to the viewport center.
+    // IO entries arrive batched and out of DOM order, so entry order is
+    // not reliable here
     function updateActive() {
       var mid = window.innerHeight / 2;
-      // Prefer the step whose box straddles the viewport middle. That keeps a
-      // step taller than the viewport (like the long study-indicator step)
-      // active the whole time it fills the screen, instead of losing .active
-      // to a neighbor whose center happens to sit closer to mid — which is
-      // what left that paragraph stuck greyed-out until you scrolled past it.
+      // A step straddling the midline takes precdent, so steps taller than the
+      // viewport stay active the whole time they fill the screen, prbly easier on the eyes. 
       var straddler = null, best = null, bestDist = Infinity;
       steps.forEach(function (s) {
         var r = s.getBoundingClientRect();
@@ -652,7 +648,8 @@ ul.task-list li input[type="checkbox"] {
     // Recompute on the observer AND on every scroll frame. IntersectionObserver
     // alone only fires when a step edge crosses the central band, so scrolling
     // within a very tall step left .active stale until the next crossing. A
-    // rAF-throttled scroll listener makes the active step track continuously.
+    // rAF-throttled scroll listener makes the active step track continuously. 
+    // This was causing an issue with text being greyed out permanently once scrolled past. 
     var io = new IntersectionObserver(updateActive,
       { rootMargin: "-45% 0px -45% 0px", threshold: 0 });
     steps.forEach(function (s) { io.observe(s); });
@@ -798,8 +795,6 @@ ul.task-list li input[type="checkbox"] {
       for (var i=0; i<links.length; i++) {
         const link = links[i];
         if (!isInternal(link.href)) {
-          // undo the damage that might have been done by quarto-nav.js in the case of
-          // links that we want to consider external
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
@@ -1121,6 +1116,7 @@ ul.task-list li input[type="checkbox"] {
     }
   });
   </script>
+  //Need to confirm open source license or copyright
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
