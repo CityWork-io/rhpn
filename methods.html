@@ -248,6 +248,10 @@ ul.task-list li input[type="checkbox"] {
 <li>A parcel held by three to eight named owners whose tax bill goes to an address away from the property, an arrangement in which one sibling handles the tax bill from a different address while another lives in the home, is promoted to the Likely tier. It is weighty evidence, but it is never sufficient for High Confidence on its own.</li>
 </ul>
 <p>Promotion rules can only raise a parcel’s tier, never lower one, and a deceased match alone, with no corroborating signal, does not reach either flagged tier.</p>
+<figure class="figure" style="margin:2rem 0">
+<img src="figures/fig2_signal_lift.png" style="max-width:100%;height:auto;display:block" alt="Bar chart of all ten ownership signals among the 8,091 flagged parcels, ordered by share: deceased owner of record 81.7%, long tenure 75.8%, absentee owner 45.7%, three or more owners on title 13.8%, USPS-vacant 8.6%, absentee individual and vacant 8.0%, out-of-state owner 5.9%, estate wording in owner name 4.7%, five or more owners on title 0.9%, and vacant heirs land 0.1%. A lift column beside the bars shows each signal's concentration relative to all 381,852 parcels.">
+<figcaption class="figure-caption">All ten signals, with each signal’s lift over the full parcel stock. The findings page shows the three most common.</figcaption>
+</figure>
 </section>
 <section id="parcel-universe" class="level2">
 <h2 class="anchored" data-anchor-id="parcel-universe">Parcel Universe</h2>
@@ -260,8 +264,9 @@ ul.task-list li input[type="checkbox"] {
 </section>
 <section id="separating-businesses-from-families" class="level2">
 <h2 class="anchored" data-anchor-id="separating-businesses-from-families">Separating Businesses from Families</h2>
-<p>Asessor parcel data carries a ready-made corporate indicator, however the study tested it before trusting it alone to filter corporate properties. It failed in both directions. It missed real corporations, including some of the region’s largest institutional landholders, and it wrongly flagged people whose names merely sound like businesses, families with names like Bank, Temple, or Church, among them genuine estates.</p>
-<p>Corporate identification was therefore done from the owner names themselves. Name rules built around business and institutional language gathered every candidate parcel into a single review list, 559 parcels in all, and every candidate was ruled on individually. Estates and family trusts were deliberately kept in the heirs population.</p>
+<p>Assessor parcel data carries a ready-made corporate indicator, however the study tested it before trusting it alone to filter corporate properties. It failed in both directions. It missed real corporations, including some of the region’s largest institutional landholders, and it wrongly flagged people whose names merely sound like businesses, families with names like Bank, Temple, or Church, among them genuine estates.</p>
+<p>Corporate identification was therefore done from the owner names themselves. Name rules built around business and institutional language gathered every candidate parcel into a single review list, 559 parcels in all, and every candidate was ruled on individually.</p>
+<p>Owner-name designations such as “Estate of,” “Heirs of,” “Life Estate,” “Et al.,” and “Deceased” were treated as strong but non-decisive indicators. This approach adapts Thomson and Bailey’s weighted-index framework and is consistent with research by Dobbs and Johnson Gaither, who include “estate” when it describes an owner’s legal status rather than a real-estate business or subdivision. An owner-name designation alone could not place a parcel in the heirs-property population; additional evidence was required. Trust designations did not contribute affirmative heirs-property points, although trust-owned parcels remained eligible for screening through the other indicators.</p>
 <p>As mentioned, no name-based screen is perfect in either direction. A person whose surname reads as a business word can be wrongly caught, and the individual review exists to correct exactly that error. A business whose legal name reads like a person’s name can slip through, and that residual error is bounded by scale. Confirmed corporate owners amounted to well under one percent of the flagged population.</p>
 </section>
 <section id="data-conventions" class="level2">
@@ -269,7 +274,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Two conventions run through every published number, and two smaller ones are noted in the footnotes.<a href="#fn10" class="footnote-ref" id="fnref10" role="doc-noteref"><sup>10</sup></a></p>
 <ul>
 <li>Multi-lot assessments are counted once. Some properties span several recorded lots, and the assessor repeats one combined assessed value on every lot’s row. Summed naively, a single assessment would be counted once per lot; one 21-lot property in the study area would be counted twenty-one times over. Value summaries collapse each such group to a single assessment before any median or total is computed.</li>
-<li>Census tracts are re-derived from coordinates. Each parcel’s census tract was recomputed by locating the parcel’s coordinates within tract boundaries. Raather than trust assessor data for correctly sort parcels by census geography, the study re-derived each parcel’s tract and block group based on its coordinates, constrained to the parcel’s own jurisdiction. The constraint mattered particularly at county lines, where a mapped point that drifted across a boundary would otherwise pull in a neighboring county’s tract.</li>
+<li>Census tracts are re-derived from coordinates. Each parcel’s census tract was recomputed by locating the parcel’s coordinates within tract boundaries. Rather than trust assessor data to correctly sort parcels by census geography, the study re-derived each parcel’s tract and block group based on its coordinates, constrained to the parcel’s own jurisdiction. The constraint mattered particularly at county lines, where a mapped point that drifted across a boundary would otherwise pull in a neighboring county’s tract.</li>
 </ul>
 </section>
 <section id="what-the-index-cannot-tell-us" class="level2">
@@ -286,7 +291,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>The index is only as good as the assessor data beneath it. ReGrid consolidates each county’s assessment roll as the county last refreshed it, and those refresh dates range from 2023 to 2026 across the six jurisdictions. A property sold, probated, or re-assessed after its county’s refresh date appears in this study in its earlier state.</li>
 </ul>
-<p>Assessor data can be inconsistent. Some fields are missing in every county file, and a signal that cannot be read is treated as absent. Incomplete inputs therefore suppress signals and push the totals down. Earlier heirs’ property research working from tax-assessment data reported the same behavior. Accordinly, estimates from these methods run conservative.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
+<p>Assessor data can be inconsistent. Some fields are missing in every county file, and a signal that cannot be read is treated as absent. Incomplete inputs therefore suppress signals and push the totals down. Earlier heirs’ property research working from tax-assessment data reported the same behavior. Accordingly, estimates from these methods run conservative.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
 </section>
 <section id="whats-not-published" class="level2">
 <h2 class="anchored" data-anchor-id="whats-not-published">What’s Not Published</h2>
@@ -302,7 +307,7 @@ ul.task-list li input[type="checkbox"] {
 <li><strong>Demographics.</strong> American Community Survey 5-year estimates, tract level.</li>
 <li><strong>Historical lending grades.</strong> 1930s Home Owners’ Loan Corporation (HOLC) grades for Richmond and the 1937 Petersburg category map, from Mapping Inequality, University of Richmond.</li>
 </ul>
-<p>Analysis by the Richmond Heirs Property Network, 2026.</p>
+<p>Analysis by HDAdvisors in support of the Richmond Heirs Property Network, 2026.</p>
 
 
 </section>

@@ -156,9 +156,13 @@ const RAMPS = {
 
 const FIELDS = {
   hp:   { prop: "hp",   max: 1 },
-  pov:  { prop: "pov",  max: 50 },
-  race: { prop: "race", max: 100 },
+  pov:  { prop: "pov",  max: 50,
+          stops: [0, 0, 10, 0.174, 20, 0.428, 30, 0.671, 40, 0.913, 48, 1.19] },
+  race: { prop: "race", max: 100,
+          stops: [0, 0, 20, 0.174, 40, 0.428, 60, 0.671, 80, 0.913, 90, 1.19] },
 };
+
+const POV_EDGES = [10, 20, 30, 40];
 
 const T = {
   bleed_m: 4500,      
@@ -211,8 +215,9 @@ function intensityExpr(gain) {
 
 function weightExpr(view) {
   const f = FIELDS[view];
+  const stops = f.stops || [0, 0, f.max, 1];
   return ["case", ["==", ["get", f.prop], null], 0,
-    ["interpolate", ["linear"], ["get", f.prop], 0, 0, f.max, 1]];
+    ["interpolate", ["linear"], ["get", f.prop]].concat(stops)];
 }
 
 function colorExpr(ramp) {
@@ -396,12 +401,21 @@ function buildLegend() {
 }
 
 const BANDS = {
-  pov: { step: 10, cap: 40, word: "residents in poverty" },
-  race: { step: 20, cap: 80, word: "non-Hispanic Black residents" },
+  pov: { edges: POV_EDGES, word: "residents in poverty", phrase: "in poverty" },
+  race: { step: 20, cap: 80, word: "non-Hispanic Black residents",
+          phrase: "Black residents" },
 };
 function band(v, kind) {
   if (!Number.isFinite(v)) return "—";
-  const { step, cap } = BANDS[kind];
+  const b = BANDS[kind];
+  if (b.edges) {
+    const e = b.edges;
+    if (v < e[0]) return `under ${e[0]}%`;
+    for (let i = 0; i < e.length - 1; i++)
+      if (v < e[i + 1]) return `around ${e[i]}%–${e[i + 1]}%`;
+    return `${e[e.length - 1]}% or more`;
+  }
+  const { step, cap } = b;
   if (v < step) return `under ${step}%`;
   if (v >= cap) return `${cap}% or more`;
   const lo = Math.floor(v / step) * step;
@@ -449,16 +463,19 @@ function sampleAt(pt, lngLat) {
 }
 
 function tooltipHTML(s) {
-  let h = `<div class="tt-head">This area</div>` +
-          `<div class="tt-sub">Within ${(T.sample_m / 1000).toFixed(1)} km of the pointer</div>`;
+  const km = (T.sample_m / 1000).toFixed(1).replace(/\.0$/, "");
+  let lead;
   if (activeView === "pov" || activeView === "race") {
     const kind = activeView;
-    h += `<div class="tt-value">${band(kind === "pov" ? s.pov : s.race, kind)}</div>` +
-         `<div class="tt-label">${BANDS[kind].word}</div>`;
-  } else if (T.hoverNamesHP) {
-    h += `<div class="tt-value" style="font-size:13.5px">${hpLevel(s.hp)}</div>` +
-         `<div class="tt-label">concentration of likely heirs’ property</div>`;
+    lead = `This area is ${band(kind === "pov" ? s.pov : s.race, kind)} ` +
+           `${BANDS[kind].phrase}`;
+  } else {
+    lead = T.hoverNamesHP
+      ? `This area is ${hpLevel(s.hp)} for likely heirs’ property`
+      : "This area";
   }
+  let h = `<div class="tt-head">${lead}</div>` +
+          `<div class="tt-sub">Around ${km} km of the pointer</div>`;
   h += `<div class="tt-divider"></div>`;
   h += `<div class="tt-row"><span class="k">${BANDS.pov.word}</span><span class="v">${band(s.pov, "pov")}</span></div>`;
   h += `<div class="tt-row"><span class="k">Black residents</span><span class="v">${band(s.race, "race")}</span></div>`;

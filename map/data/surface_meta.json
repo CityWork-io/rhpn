@@ -15,7 +15,7 @@
  ],
  "grid_pixel_m": 50,
  "sigma_hp_m": 5500,
- "sigma_acs_m": 1500,
+ "sigma_acs_m": 600,
  "lattice_m": 500,
  "jitter_m": 250,
  "hp_stretch_percentiles": [

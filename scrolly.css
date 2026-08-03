@@ -77,7 +77,8 @@
   top: var(--site-nav-height);
   height: calc(100svh - var(--site-nav-height));
 }
-#scrolly-study .step-card .tier-note {
+
+.step-card .tier-note {
   font-size: 0.86rem;
   line-height: 1.5;
   color: #52616B;
@@ -85,9 +86,9 @@
   padding-top: 0.7rem;
   margin-top: 0.3rem;
 }
-#scrolly-study .step-card .tier-note p { margin: 0; }
+.step-card .tier-note p { margin: 0; }
 
-#scrolly-study .step-card .tier-note + p { margin-top: 1.6rem; }
+.step-card .tier-note + p { margin-top: 1.6rem; }
 
 .study-kicker {
   font-size: 0.78rem;
@@ -192,7 +193,7 @@ html:not(.scrolly-js) .step .step-card { opacity: 1; }
 #scrolly-types .step,
 #scrolly-zones .step { min-height: 48svh; padding-top: 0.6rem; padding-bottom: 0.6rem; }
 
-#scrolly-screen .step { min-height: 15svh; padding-top: 0.6rem; padding-bottom: 0.6rem; }
+#scrolly-screen .step:first-child { padding-bottom: 4svh; }
 
 .scrolly-figdock .media-stack {
   width: min(58vw, 94%);
@@ -448,6 +449,24 @@ html:not(.scrolly-js) .scrolly-figdock .media-stack img { height: auto; }
   color: #52616B;
 }
 
+#scrolly-screen .media-stack {
+  width: min(58vw, 94%);
+  height: calc(100svh - var(--site-nav-height) - 5rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+#scrolly-screen .overlay img.records-figure {
+  width: 100%; height: auto; max-height: 100%; object-fit: contain;
+}
+#scrolly-screen .p-card { transition: opacity 0.45s ease; }
+.scrolly-js #scrolly-screen[data-state="tiers"] .p-card { opacity: 0; }
+.scrolly-js #scrolly-screen[data-state="tiers"] .overlay[data-media="tiers"] { opacity: 1; }
+
+html:not(.scrolly-js) #scrolly-screen .scrolly-graphic { position: static; height: auto; padding: 2rem 0; }
+html:not(.scrolly-js) #scrolly-screen .media-stack { height: auto; display: block; }
+html:not(.scrolly-js) #scrolly-screen .overlay { position: static; opacity: 1; margin-top: 2rem; }
+
 .scrolly-js #scrolly-screen .rev { opacity: 0.08; transition: opacity 0.45s ease; }
 .scrolly-js #scrolly-screen[data-state="s1"] .rev-1,
 .scrolly-js #scrolly-screen[data-state="s2"] .rev-1,
@@ -488,6 +507,7 @@ html:not(.scrolly-js) .scrolly-figdock .media-stack img { height: auto; }
   .scrolly-prose .step { min-height: 58svh; padding-bottom: 5svh; }
   .scrolly-mapdock .map-embed { width: 94vw; height: 46vh; }
   .scrolly-figdock .media-stack { width: 92vw; max-width: 92vw; height: 46vh; }
+  #scrolly-screen .media-stack { width: 92vw; max-width: 92vw; height: 46vh; }
   .panel-label { top: 1rem; left: 4vw; }
   .step-card { max-width: none; font-size: 0.98rem; }
 }
