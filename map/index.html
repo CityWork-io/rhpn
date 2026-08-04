@@ -20,7 +20,8 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
 .editorial-link:hover{color:#1f1d19;text-decoration:underline}
 
 .panel{position:absolute;top:24px;right:24px;z-index:10;width:272px;background:rgba(255,255,255,.88);backdrop-filter:blur(16px);border:1px solid rgba(35,31,25,.1);border-radius:12px;padding:18px;box-shadow:0 12px 34px rgba(52,45,35,.18);max-height:calc(100vh - 48px);overflow-y:auto}
-.panel-toggle{display:flex;align-items:center;justify-content:space-between;cursor:pointer;user-select:none;font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.3px;color:#1f1d19}
+.panel-toggle{display:flex;align-items:center;justify-content:space-between;width:100%;text-align:left;background:none;border:0;padding:0;cursor:pointer;user-select:none;font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:12px;font-weight:600;letter-spacing:.3px;color:#1f1d19}
+.panel-toggle:focus-visible{outline:2px solid rgba(31,29,25,.55);outline-offset:3px;border-radius:3px}
 .panel-toggle .pt-chev{font-size:13px;color:#1f1d19;transition:transform .2s}
 .panel-body{margin-top:14px}
 .panel.collapsed{width:auto;padding:12px 16px}
@@ -28,17 +29,18 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
 .panel.collapsed .pt-chev{transform:rotate(-90deg)}
 .panel-title{font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:#746d61;margin-bottom:10px}
 .divider{height:1px;background:rgba(35,31,25,.1);margin:14px 0}
-.region-buttons{display:flex;flex-wrap:wrap;gap:6px}
-.region-btn{padding:5px 10px;font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:500;color:#5f5a50;background:rgba(255,255,255,.72);border:1px solid rgba(35,31,25,.12);border-radius:6px;cursor:pointer;transition:all .2s}
-.region-btn:hover{background:rgba(255,255,255,.95);color:#1f1d19;border-color:rgba(31,29,25,.5)}
-.region-btn.active{background:rgba(31,29,25,.08);color:#1f1d19;border-color:rgba(31,29,25,.55)}
+.view-buttons{display:flex;flex-wrap:wrap;gap:6px}
+.ctl-btn{padding:5px 10px;font-family:'Nunito Sans',sans-serif;font-size:11px;font-weight:500;color:#5f5a50;background:rgba(255,255,255,.72);border:1px solid rgba(35,31,25,.12);border-radius:6px;cursor:pointer;transition:all .2s}
+.ctl-btn:hover{background:rgba(255,255,255,.95);color:#1f1d19;border-color:rgba(31,29,25,.5)}
+.ctl-btn.active{background:rgba(31,29,25,.08);color:#1f1d19;border-color:rgba(31,29,25,.55)}
+.ctl-btn:focus-visible{outline:2px solid rgba(31,29,25,.55);outline-offset:2px}
 
 .infocard .ic-region{font-size:15px;font-weight:600;color:#1f1d19}
 .infocard .ic-hero{font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:28px;font-weight:400;color:#1f1d19;line-height:1}
 .infocard .ic-herolabel{font-size:11px;color:#746d61;line-height:1.35}
 
 .ramp-buttons{display:flex;gap:6px}
-.ramp-buttons .region-btn{flex:1;text-align:center}
+.ramp-btn{flex:1;text-align:center}
 
 .legend-bar{position:absolute;bottom:32px;left:50%;transform:translateX(-50%);z-index:10;display:flex;flex-direction:column;align-items:center;gap:8px;padding:13px 22px;background:rgba(255,255,255,.9);backdrop-filter:blur(12px);border:1px solid rgba(35,31,25,.1);border-radius:10px;font-size:11px;color:#5f5a50;box-shadow:0 10px 28px rgba(52,45,35,.16);max-width:min(92vw,780px)}
 .legend-title{font-family:'Radio Canada','Nunito Sans',sans-serif;font-size:13px;font-weight:500;color:#2a2721;letter-spacing:.3px;text-align:center}
@@ -98,13 +100,13 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
 </div>
 
 <div class="panel" id="panel">
-  <div class="panel-toggle" id="panelToggle">
+  <button type="button" class="panel-toggle" id="panelToggle" aria-expanded="true" aria-controls="panelBody">
     <span class="pt-title">Map controls</span>
     <span class="pt-chev">▾</span>
-  </div>
+  </button>
   <div class="panel-body" id="panelBody">
   <div class="panel-title">Map view</div>
-  <div class="region-buttons" id="viewButtons"></div>
+  <div class="view-buttons" id="viewButtons"></div>
 
   <div class="divider"></div>
   <div class="panel-title">Area snapshot</div>
@@ -119,8 +121,8 @@ body{font-family:'Nunito Sans',sans-serif;background:#ffffff;color:#1f1d19;overf
   <div class="divider"></div>
   <div class="panel-title">Color ramp</div>
   <div class="ramp-buttons">
-    <button class="region-btn active" id="rampDefault">Default</button>
-    <button class="region-btn" id="rampCB">Colorblind</button>
+    <button type="button" class="ctl-btn ramp-btn active" id="rampDefault" aria-pressed="true">Default</button>
+    <button type="button" class="ctl-btn ramp-btn" id="rampCB" aria-pressed="false">Colorblind</button>
   </div>
 
   <div class="divider"></div>
@@ -357,8 +359,11 @@ function ringStops() {
 function applyView(name) {
   activeView = name;
   map.setPaintProperty("surface-heat", "heatmap-weight", weightExpr(name));
-  document.querySelectorAll("#viewButtons .region-btn").forEach(b =>
-    b.classList.toggle("active", b.dataset.view === name));
+  document.querySelectorAll(".view-btn").forEach(b => {
+    const on = b.dataset.view === name;
+    b.classList.toggle("active", on);
+    b.setAttribute("aria-pressed", on ? "true" : "false");
+  });
   buildLegend();
 }
 
@@ -367,7 +372,9 @@ function buildViewButtons() {
   const labels = { hp: "Heirs’ property", pov: "Poverty", race: "% Black residents" };
   Object.keys(VIEWS).forEach(k => {
     const btn = document.createElement("button");
-    btn.className = "region-btn" + (k === "hp" ? " active" : "");
+    btn.type = "button";
+    btn.className = "ctl-btn view-btn" + (k === "hp" ? " active" : "");
+    btn.setAttribute("aria-pressed", k === "hp" ? "true" : "false");
     btn.dataset.view = k;
     btn.textContent = labels[k];
     btn.addEventListener("click", () => applyView(k));
@@ -515,12 +522,18 @@ function updateInfoCard(key) {
   $("icHero").textContent = s.heirs_rate_pct.toFixed(2) + "%";
 }
 
-$("panelToggle").addEventListener("click", () => $("panel").classList.toggle("collapsed"));
+$("panelToggle").addEventListener("click", () => {
+  const collapsed = $("panel").classList.toggle("collapsed");
+  $("panelToggle").setAttribute("aria-expanded", collapsed ? "false" : "true");
+});
 
 function setRamp(name) {
   activeRamp = name;
-  $("rampDefault").classList.toggle("active", name === "default");
-  $("rampCB").classList.toggle("active", name === "colorblind");
+  const isDefault = name === "default";
+  $("rampDefault").classList.toggle("active", isDefault);
+  $("rampCB").classList.toggle("active", !isDefault);
+  $("rampDefault").setAttribute("aria-pressed", isDefault ? "true" : "false");
+  $("rampCB").setAttribute("aria-pressed", isDefault ? "false" : "true");
   map.setPaintProperty("surface-heat", "heatmap-color", colorExpr(RAMPS[name]));
   buildLegend();
 }
