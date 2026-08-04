@@ -194,7 +194,7 @@ function showLoadError(msg) {
 const LAT0 = 37.42;
 let LATTICE_M = 500;  
 const mPerPxAtZoom = z => 156543.03392 * Math.cos(LAT0 * Math.PI / 180) / Math.pow(2, z);
-const ZOOM_STOPS = [8, 8.5, 9, 9.5, 10, 11, 12, 13, 14];
+const ZOOM_STOPS = [7.5, 8, 8.5, 9, 9.5, 10, 11, 12, 13, 14];
 
 const radiusPx = z => Math.max(7, Math.min(220, T.bleed_m / mPerPxAtZoom(z)));
 function radiusExpr() {
