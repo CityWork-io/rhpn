@@ -289,7 +289,7 @@ map.on("load", async () => {
     return;
   }
 
-  VIEWS.hp = { legendTitle: "Where likely heirs’ property concentrates", continuous: true };
+  VIEWS.hp = { legendTitle: "Heirs’ Property Concentrations", continuous: true };
   VIEWS.pov = { legendTitle: "Residents below the poverty line (ACS 5-year)",
     labels: notes.poverty_bins.labels };
   VIEWS.race = { legendTitle: "Non-Hispanic Black share of residents (ACS 5-year)",
@@ -486,7 +486,7 @@ function tooltipHTML(s) {
   h += `<div class="tt-divider"></div>`;
   h += `<div class="tt-row"><span class="k">${BANDS.pov.word}</span><span class="v">${band(s.pov, "pov")}</span></div>`;
   h += `<div class="tt-row"><span class="k">Black residents</span><span class="v">${band(s.race, "race")}</span></div>`;
-  h += `<div class="tt-foot">Averaged over the surrounding area, not a census tract. ` +
+  h += `<div class="tt-foot">Averaged over the surrounding area. ` +
        `Heirs’ property is shown as shading only.</div>`;
   return h;
 }

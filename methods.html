@@ -3,7 +3,6 @@
 <meta name="robots" content="noindex, nofollow">
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.9.38">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -39,6 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap-704630e06107750422c8cab03c1a8d96.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link rel="stylesheet" href="navigation.css">
 
 
 </head>
@@ -60,7 +60,7 @@ ul.task-list li input[type="checkbox"] {
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
     <a class="nav-link" href="./index.html"> 
-<span class="menu-text">Findings</span></a>
+<span class="menu-text">Report</span></a>
   </li>  
   <li class="nav-item">
     <a class="nav-link" href="./map.html"> 
@@ -100,7 +100,7 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#data-conventions" id="toc-data-conventions" class="nav-link" data-scroll-target="#data-conventions">Data Conventions</a></li>
   <li><a href="#what-the-index-cannot-tell-us" id="toc-what-the-index-cannot-tell-us" class="nav-link" data-scroll-target="#what-the-index-cannot-tell-us">What the Index Cannot Tell Us</a></li>
   <li><a href="#limitations" id="toc-limitations" class="nav-link" data-scroll-target="#limitations">Limitations</a></li>
-  <li><a href="#whats-not-published" id="toc-whats-not-published" class="nav-link" data-scroll-target="#whats-not-published">What’s Not Published</a></li>
+  <li><a href="#protecting-information" id="toc-protecting-information" class="nav-link" data-scroll-target="#protecting-information">Protecting Information</a></li>
   <li><a href="#data-sources" id="toc-data-sources" class="nav-link" data-scroll-target="#data-sources">Data Sources</a></li>
   </ul>
 </nav>
@@ -130,6 +130,7 @@ ul.task-list li input[type="checkbox"] {
 <section id="defining-heirs-property" class="level2">
 <h2 class="anchored" data-anchor-id="defining-heirs-property">Defining Heirs’ Property</h2>
 <p>Heirs’ property is what happens when a property owner dies and the title never formally passes to the next owner through a clear, documented transition. The deed stays in the deceased person’s name while descendants keep living in, paying taxes on, or otherwise using the home. What the heirs hold instead is a tenancy in common: each one owns an undivided fractional interest in the whole property rather than title to a specific part of it. That gap can leave a family with clouded title and no clean authority to sell, refinance, repair, or access disaster aid, and it opens the door to partition actions by speculators.</p>
+<p>Because heirs’ property is a legal condition that parcel records do not directly identify, it cannot be confirmed from administrative data alone. This study therefore screens for patterns consistent with unresolved inherited ownership so outreach and legal review can be focused where they may be most useful.</p>
 </section>
 <section id="research" class="level2">
 <h2 class="anchored" data-anchor-id="research">Research</h2>
@@ -144,7 +145,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="how-parcels-were-screened">How Parcels Were Screened</h2>
 <p>Reading deeds to identify heirs’ property at scale across six jurisdictions is infeasible. Instead, the study scored every parcel on a set of ownership signals that, taken together, make heirs’ status likely. The index was built in stages.</p>
 <p>First, the study began with the facts recorded about the parcel itself including estate language in the owner name; decades without a recorded transfer; postal vacancy; a tax bill mailed somewhere other than the property; and multiple owners of record.</p>
-<p>Before any further data was acquired, that preliminary index was checked against actual deeds. A sample of addresses spanning high- and low-risk tiers was checked against the Virginia circuit courts’ Secure Remote Access (SRA) land-records system in order to check the logic if a low-risk parcel had come back as heirs’ property, or a deed name had failed to match the assessor’s owner of record, it would have signaled that the index was missing signals. Instead, assessor and deed names agreed on the sampled low- and moderate-tier parcels, while the high-risk parcel in the sample showed the deed/assessor mismatch the index predicted.</p>
+<p>Before acquiring deceased-owner data, a small sample of parcel records was compared with deeds accessed through Virginia’s Secure Remote Access system. Assessor and deed names generally aligned among sampled low and moderate risk parcels, while discrepancies appeared among sampled higher risk records. Because such discrepancies can reflect record timing, data quality, or other ownership changes, they were not treated as proof of heirs’ property. The exercise served as a limited data-quality check and reinforced the need for deceased-owner matching and case-level legal review.</p>
 <p>Second, corporations cannot be an heir’s property. Businesses, institution, and government-owned records were filtered out, and the remaining owner fields across the six assessor datasets were further parsed into around 450,000 individual person-owner records.</p>
 <p>Third, each person-owner record was checked against a commercial deceased-suppression database built around the Social Security Administration’s Death Master File. Where one owner holds several parcels, a confirmed death applies to each parcel that names that owner. The deceased-owner match was then folded into the index alongside the parcel-facts signals, with the promotion rules described below.</p>
 <p>Heirs’ Index Signal Set:</p>
@@ -182,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="even">
-<td>Vacant heirs-land composite: no readable owner name, no building, and long tenure together</td>
+<td>Vacant heirs' land composite: no readable owner name, no building, and long tenure together</td>
 <td style="text-align: right;">2</td>
 </tr>
 <tr class="odd">
@@ -274,9 +275,17 @@ ul.task-list li input[type="checkbox"] {
 </ul>
 <p>Assessor data can be inconsistent. Some fields are missing in every county file, and a signal that cannot be read is treated as absent. Incomplete inputs therefore suppress signals and push the totals down. Earlier heirs’ property research working from tax-assessment data reported the same behavior. Accordingly, estimates from these methods run conservative.<a href="#fn11" class="footnote-ref" id="fnref11" role="doc-noteref"><sup>11</sup></a></p>
 </section>
-<section id="whats-not-published" class="level2">
-<h2 class="anchored" data-anchor-id="whats-not-published">What’s Not Published</h2>
-<p>Published materials show tract rates as ranges (bins), not exact values. Tracts with fewer than 100 total parcels are suppressed. No parcel-level data, owner information, or addresses appear in any public material.</p>
+<section id="protecting-information" class="level2">
+<h2 class="anchored" data-anchor-id="protecting-information">Protecting Information</h2>
+<p>Research on heirs’ property presents a specific data governance problem. The same information that can help legal-service providers understand where assistance is needed can also be used to identify families or properties in vulnerable ownership conditions. Because heirs’ property can expose families to speculative acquisition, partition actions, and involuntary land loss, this study follows a do-no-harm approach to public reporting.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
+<ul>
+<li>Parcel addresses, owner names, and parcel-level classifications are not published or shared with anyone who is not directly involved in the analysis.</li>
+<li>Neighborhood results are generalized through ranges and suppression rules rather than exact tract-level values where disclosure risk is higher. Tracts with fewer than 100 total parcels are suppressed.</li>
+<li>Public maps are designed to show regional patterns and guide outreach, not to identify individual properties that may have tangled title.</li>
+</ul>
+<p>These protections necessarily obscure some detail that might otherwise be useful to the public. That tradeoff is intentional. A detailed list or map of properties believed to have unresolved title could support legitimate outreach, but it could also be used for purposes contrary to the study, including identifying potentially vulnerable properties for speculative acquisition.</p>
+<p>Public reporting therefore uses the minimum level of geographic detail needed to explain the findings while withholding information that could expose individual families. The goal is to produce enough information to support legal assistance, policy, and public understanding without turning a research tool into a means of locating vulnerable owners.</p>
+<p>The use of this data or any research herein to further real estate speculation on heirs’ property is explicitly prohibited.</p>
 </section>
 <section id="data-sources" class="level2">
 <h2 class="anchored" data-anchor-id="data-sources">Data Sources</h2>
@@ -308,6 +317,7 @@ ul.task-list li input[type="checkbox"] {
 <li id="fn9"><p>Two candidate signals were designed and rejected. A shared-surname signal, three or more owners sharing a last name, was designed and then dropped: surname changes at marriage make it unreliable for women, and the multiple-owner signal already captures most of what it would have added. A tax-delinquency signal was planned and proved impossible: the tax-amount field is empty in all six county files.<a href="#fnref9" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn10"><p>A small number of parcels, 627 of 381,852, carry no parcel identifier in the assessor data. They remain in the denominator, and the two flagged parcels among them are identified by street address.<a href="#fnref10" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn11"><p>Housing Assistance Council, <em>A Methodological Approach to Estimate Residential Heirs’ Property in the United States</em>.<a href="#fnref11" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn12"><p>Thomas W. Mitchell, “The Heirs’ Property Field: Moving from the Shadows to the Light to Enlightened, Evidence-Based Solutions,” <em>Agricultural and Resource Economics Review</em> 54, no. 3 (2025): 583–95, <a href="https://doi.org/10.1017/age.2025.10021">https://doi.org/10.1017/age.2025.10021</a>.<a href="#fnref12" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
@@ -719,13 +729,11 @@ ul.task-list li input[type="checkbox"] {
 <footer class="footer">
   <div class="nav-footer">
     <div class="nav-footer-left">
-<p>Richmond Heirs Property Network</p>
 </div>   
     <div class="nav-footer-center">
       &nbsp;
     </div>
     <div class="nav-footer-right">
-<p>Data from ReGrid parcel records (Q1 2026) and ACS 5-Year Estimates.</p>
 </div>
   </div>
 </footer>
