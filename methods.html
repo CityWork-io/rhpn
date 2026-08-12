@@ -131,6 +131,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="defining-heirs-property">Defining Heirs’ Property</h2>
 <p>Heirs’ property can arise when someone dies without a will, or when an estate is never fully resolved and the title is not updated. The property may pass to several descendants, with each heir inheriting undivided interest in the property. Family members  continue living in the home, maintaining it, and paying taxes even while the deed remains in the deceased owner’s name. Without clear title, they may have difficulty selling or refinancing the property, borrowing against it for repairs, receiving federal disaster aid, or passing it cleanly to the next generation. Fractured ownership can also lead to the forced selling of a property.
 <p>Because heirs’ property is a legal condition that parcel records do not directly identify, it's difficult to confirm property status from administrative data alone. This study therefore screens patterns in public and administrative records for patterns consistent with unresolved inherited ownership helping identify areas where outreach and case-level legal review may be most useful.</p>
+<p>Throughout the report, “flagged parcel rate” means the share of parcels classified as high confidence or likely by the screening index.</p>
 <p>Below we describe the method of how we arrived at determining heirs' properties.</p>
 
 </section>
@@ -154,7 +155,7 @@ ul.task-list li input[type="checkbox"] {
 <ul>
 <li>a deceased owner of record</li>
 <li>explicit estate language in the owner name itself, words like HEIRS, ESTATE, LIFE ESTATE, and DECEASED<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></li>
-<li>long ownership tenure, meaning no recorded sale in twenty years or more, or no sale date on record</li>
+<li>long ownership tenure, meaning the recorded sale occurred twenty years ago or more</li>
 <li>absentee ownership, a tax bill mailed somewhere other than the property, including out of state</li>
 <li>multiple owners of record, meaning three or more named owners on one parcel<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a></li>
 <li>USPS vacancy status<a href="#fn8" class="footnote-ref" id="fnref8" role="doc-noteref"><sup>8</sup></a></li>
@@ -265,7 +266,7 @@ ul.task-list li input[type="checkbox"] {
 <h2 class="anchored" data-anchor-id="what-the-index-cannot-tell-us">What the Index Cannot Tell Us</h2>
 <ul>
 <li>It is an index, not a title determination. The design-stage deed spot check described above supported the index’s logic, but no statistically representative sample of the final flagged population has been taken through a full title search, so the share of flagged parcels that would survive one is unmeasured.</li>
-<li>The study total is best taken as a lower limit, not an upper limit. The index requires convergent evidence, the death registry is incomplete, and Virginia assessors often update tax rolls to living family members while the deed stays in a deceased owner’s name, so an unknown share of true heirs’ property is invisible to owner-record screening.</li>
+<li>The screening process may miss properties whose ownership problems are not visible in administrative records. Equally, the flagged total is an estimate rather than a confirmed count.</li>
 <li>Tract-level findings are regional-context dependent. The inequity results are measured on tract aggregates, and cannot speak to any individual owner’s race or income.</li>
 <li>The death-suppression signals, which carries most of the flagged parcels, rests on a single commercial death registry whose own error rate is not published.</li>
 </ul>
@@ -282,7 +283,7 @@ ul.task-list li input[type="checkbox"] {
 <p>Research on heirs’ property presents a specific data governance problem. The same information that can help legal-service providers understand where assistance is needed can also be used to identify families or properties in vulnerable ownership conditions. Because heirs’ property can expose families to speculative acquisition, partition actions, and involuntary land loss, this study follows a do-no-harm approach to public reporting.<a href="#fn12" class="footnote-ref" id="fnref12" role="doc-noteref"><sup>12</sup></a></p>
 <ul>
 <li>Parcel addresses, owner names, and parcel-level classifications are not published or shared with anyone who is not directly involved in the analysis.</li>
-<li>Neighborhood results are generalized through ranges and suppression rules rather than exact tract-level values where disclosure risk is higher. Tracts with fewer than 100 total parcels are suppressed.</li>
+<li>Neighborhood results are generalized through ranges and suppression rules rather than exact tract-level values where disclosure risk is higher. Tracts with fewer than 5 flagged parcels or fewer than 100 total parcels are suppressed.</li>
 <li>Public maps are designed to show regional patterns and guide outreach, not to identify individual properties that may have tangled title.</li>
 </ul>
 <p>These protections necessarily obscure some detail that might otherwise be useful to the public. That tradeoff is intentional. A detailed list or map of properties believed to have unresolved title could support legitimate outreach, but it could also be used for purposes contrary to the study, including identifying potentially vulnerable properties for speculative acquisition.</p>
