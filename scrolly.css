@@ -803,6 +803,31 @@ html:not(.scrolly-js) #scrolly-screen .overlay { position: static; opacity: 1; m
   }
 }
 
+@media (max-width: 640px) {
+  #scrolly-study .scrolly-graphic,
+  .scrolly-figdock .scrolly-graphic,
+  #scrolly-screen .scrolly-graphic {
+    height: 34svh;
+    align-items: flex-start;
+  }
+
+  #scrolly-study .media-stack,
+  .scrolly-figdock .media-stack,
+  #scrolly-screen .media-stack {
+    height: 32svh;
+    align-items: flex-start;
+  }
+
+  #scrolly-study .media-stack img,
+  .scrolly-figdock .media-stack img,
+  #scrolly-screen .media-stack img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    object-position: center top;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .scrolly *, .chart-stack img.overlay, .media-stack > .overlay { transition: none !important; }
 }
