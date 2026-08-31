@@ -804,6 +804,10 @@ html:not(.scrolly-js) #scrolly-screen .overlay { position: static; opacity: 1; m
 }
 
 @media (max-width: 640px) {
+  .scrolly-mapdock .scrolly-graphic {
+    top: 0;
+  }
+
   #scrolly-study .scrolly-graphic,
   .scrolly-figdock .scrolly-graphic,
   #scrolly-screen .scrolly-graphic {
